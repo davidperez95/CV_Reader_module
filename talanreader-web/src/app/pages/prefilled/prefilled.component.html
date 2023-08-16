@@ -1,0 +1,67 @@
+<div class="middle_title">
+    <h1>Review CV information</h1>
+</div>
+
+<section class="consultors">
+    <!-- The ngFor directive is used to loop over the list of consultants and display information for each one. -->
+    <div class="consultor-div" *ngFor="let consultor of consultors">
+        <h1> Name </h1>
+         <!-- This input field displays the consultant's name and saves changes to it. -->
+        <div class="card-content">
+            <input type="text" [value]="consultor.consultorName" (keyup)="saveName($event)">
+        </div>
+
+        <h1> Email </h1>
+         <!-- This input field displays the consultant's email and saves changes to it. -->
+        <div class="card-content">
+            <input type="text" [value]="consultor.consultorEmail" (keyup)="saveEmail($event)">
+        </div>
+
+        <h1> Phone </h1>
+         <!-- This input field displays the consultant's phone number and saves changes to it. -->
+        <div class="card-content">
+            <input type="text" [value]="consultor.consultorPhone" (keyup)="savePhone($event)">
+        </div>
+
+        <h1> Academic Experience </h1>
+         <!-- This text area displays the consultant's academic experience and saves changes to it. -->
+        <div class="control">
+            <textarea class="textarea" placeholder="Textarea" [value]="consultor.consultorAcademic"
+                (keyup)="saveAcademic($event)"></textarea>
+        </div>
+
+        <h1> Work Experience </h1>
+        <!--This text area displays the consultant's work experience and saves changes to it. -->
+        <div class="control">
+
+        <div *ngFor="let work of consultor.consultorWork; let i = index;">
+        <h4> Dates: </h4>
+        <!-- <input type="date" [value]="work.dates" (change)="saveWork($event, i)"> -->
+        <input type="text" (change)="saveWorkDates($event, i)" [value]="work.dates">
+        <h4> Info: </h4>
+        <textarea class="textarea" placeholder="Textarea" (change)="saveWorkInfo($event, i)">
+    {{ work.info }}
+        </textarea>
+        </div>
+        </div>
+
+        <h1> Employee Skills </h1>
+        <!-- This text area displays the consultant's skills and saves changes to it. -->
+        <div class="control">
+            <textarea class="textarea" placeholder="Textarea" [value]="consultor.consultorSkills"
+                (keyup)="saveSkills($event)"></textarea>
+        </div>
+
+        <!-- This button saves the changes made to a consultant's information. -->
+        <div>
+            <button class="button" (click)="onClick(consultor)">Save</button>
+        </div>
+        <!-- This button downloads the consultant's CV as a PDF file. -->
+        <div>
+            <button class="button" (click)="downloadPDF()">Download PDF</button>
+        </div>
+        <div>
+            <button class="button" (click)="goToHome()">Home</button>
+        </div>
+    </div>
+</section>
